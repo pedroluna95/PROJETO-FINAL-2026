@@ -1,0 +1,8 @@
+TUTORIAL:
+
+1- abrir a pasta do projeto
+2- abrir o terminal 
+3- git add .
+4- git commit -m "nome do commit"
+5- git push 
+
