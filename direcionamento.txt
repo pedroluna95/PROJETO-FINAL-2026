@@ -1,0 +1,14 @@
+1.1 ser um portal que simplifica a vida do usuário na área de estagio 
+1.2 Alunos, supervisor professor
+1.3 falta de organização e descentralização do controle de estagio em um campus do cefet
+
+2. funcionalidades 
+cadastro e login
+contagem de horas
+lançamento de vagas
+busca de vagas
+candidatura a vagas
+
+3 não temos limites, rs
+
+4 (glassdoor, catho, ciee) mais pra funcionalidade de vaga

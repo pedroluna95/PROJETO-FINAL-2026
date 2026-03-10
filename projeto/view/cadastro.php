@@ -6,6 +6,9 @@
     <title>Document</title>
 </head>
 <body>
+    <input type="button" Estudante>
+    <input type="button" Supervisor>
+
     
 </body>
 </html>
