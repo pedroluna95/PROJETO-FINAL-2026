@@ -1,0 +1,17 @@
+{
+    "name": "pedro/projeto-final",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Core\\": "core/"
+        }
+    },
+    "authors": [
+        {
+            "name": "pedroluna95",
+            "email": "pedromacedo0905@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
