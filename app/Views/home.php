@@ -7,5 +7,9 @@
 </head>
 <body>
     PAGINA INICIAL BBS
+
+    <button onclick="window.location.href='?url=home/cadastro'">Cadastre-se</button>
+    <button onclick="window.location.href='?url=home/login'">Faça Login</button>
+
 </body>
 </html>
