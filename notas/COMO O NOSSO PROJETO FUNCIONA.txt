@@ -1,0 +1,23 @@
+COMO O NOSSO PROJETO FUNCIONA? 
+
+
+
+1. AS PASTAS DO PROJETO
+- public/index.php: E a porta de entrada do site. Tudo comeca por aqui.
+- core/Router.php: le o que voce digitou no navegador e decide qual pagina abrir.
+- app/Controllers: Aqui fica a "inteligencia". Ele processa os dados e chama o visual.
+- app/Views: Aqui fica apenas o visual (HTML e CSS) que o usuario ve.
+- app/Models: Aqui ficara a parte de salvar e ler dados do banco de dados.
+
+2. O CAMINHO QUE O SITE FAZ
+- O usuario clica em um link (ex: cadastro).
+- O Roteador (Router) avisa o Controlador (Controller) que queremos ver o cadastro.
+- O Controlador junta o Topo (header), o Meio (cadastro) e o Fundo (footer) e mostra na tela.
+
+3. POR QUE SEPARAMOS O TOPO E O FUNDO?
+- Fizemos isso para nao precisar repetir o codigo do menu em todas as paginas.
+- Se quisermos mudar o menu, mudamos em um lugar so e muda no site inteiro.
+
+4. COMO VAMOS TRABALHAR DAQUI PARA FRENTE
+- Para criar uma pagina nova: Criamos o HTML na pasta "Views" e avisamos o "Controller".
+- Em caso de botões q alterem entre as paginas, seguir o padrão do botão cadastro

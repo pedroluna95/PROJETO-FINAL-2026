@@ -1,18 +1,27 @@
 <?php
 
-namespace App\Controllers; // Define o namespace para a classe HomeController.
+namespace App\Controllers;
 
-class HomeController { // O HomeController é responsável por gerenciar a lógica da página inicial.
+class HomeController {
     
-    public function index() { // O método index é o ponto de entrada para a página inicial.
-        require_once __DIR__ . '/../Views/home.php'; // Inclui a view home.php para exibir o conteúdo da página inicial.
+    // Método auxiliar para renderizar as views com cabeçalho e rodapé
+    private function render($viewName) {
+        require_once __DIR__ . '/../Views/header.php';
+        require_once __DIR__ . '/../Views/'. $viewName . '.php';
+        require_once __DIR__ . '/../Views/footer.php';
+    }
+
+    public function index() {
+        $this->render('home');
     }
 
     public function cadastro() {
-        require_once __DIR__ . '/../Views/cadastro.php';
+        $this->render('cadastro');
     }
 
     public function login() {
-        require_once __DIR__ . '/../Views/login.php';
+        $this->render('login');
     }
 }
+
+

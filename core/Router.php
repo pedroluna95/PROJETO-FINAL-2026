@@ -4,12 +4,12 @@ namespace Core; // Define o namespace para a classe Router.
 class Router { // A classe Router é responsável por analisar a URL e despachar a requisição para o controlador e método corretos.
     public function run() { // O método run inicia o processo de roteamento.
         $url = isset($_GET['url']) ? $_GET['url'] : 'home'; // Obtém a URL da requisição. Se não houver, define 'home' como padrão.
-        $url = rtrim($url, '/'); // Remove barras (/), se houver, do final da URL para padronização.
-        $url = filter_var($url, FILTER_SANITIZE_URL); // Sanitiza a URL para remover caracteres indesejados e prevenir ataques.
+        $url = rtrim($url, '/');
+        $url = filter_var($url, FILTER_SANITIZE_URL); 
 
         $parts = explode('/', $url); // Divide a URL em segmentos (ex: controller/method/param).
-        $controllerName = ucfirst(array_shift($parts)) . 'Controller'; // Extrai o nome do controlador do primeiro segmento da URL e formata (ex: 'home' -> 'HomeController').
-        $methodName = array_shift($parts) ?: 'index'; // Extrai o nome do método do segundo segmento da URL. Se não houver, define 'index' como padrão.
+        $controllerName = ucfirst(array_shift($parts)) . 'Controller'; 
+        $methodName = array_shift($parts) ?: 'index'; 
 
         $controllerClass = "App\\Controllers\\$controllerName"; // Constrói o nome completo da classe do controlador, incluindo o namespace.
 
