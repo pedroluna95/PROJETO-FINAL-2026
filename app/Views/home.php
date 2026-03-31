@@ -6,8 +6,9 @@
     <link rel="stylesheet" href="/css/style.css">
     <title>Página inicial</title>
 </head>
-<body>
-    PAGINA INICIAL 
+<body>         
+        <h1>PAGINA INICIAL</h1>
+        <p>Seu conteúdo aqui...</p>
     
 </body>
 </html>

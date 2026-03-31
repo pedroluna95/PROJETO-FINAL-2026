@@ -5,15 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/app/Views/css/style.css">
     <style>
-        
         body {
             margin: 0;
-            padding-top: 60px; 
-            padding-bottom: 40px; 
+            padding-top: 60px; /* Mantém o espaço para o header que continua fixo no topo */
             font-family: Arial, sans-serif;
             display: flex; 
             flex-direction: column;
-            min-height: 100vh; 
+            min-height: 100vh; /* Garante que a página ocupe toda a altura da tela */
         }
         header {
             position: fixed;
@@ -30,7 +28,6 @@
             box-sizing: border-box; 
             z-index: 1000; 
         }
-        
         .nav-buttons button {
             margin-left: 10px;
             padding: 8px 15px;
@@ -43,14 +40,12 @@
         .nav-buttons button:hover {
             background-color: #777;
         }
-        
         main {
-            flex: 1; 
+            flex: 1; /* Isso faz com que o conteúdo principal cresça e empurre o footer para baixo */
             padding: 20px;
             box-sizing: border-box;
         }
     </style>
-
 </head>
 <body>
     <header>

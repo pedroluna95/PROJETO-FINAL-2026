@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 class HomeController {
     
-    // Método auxiliar para renderizar as views com cabeçalho e rodapé
     private function render($viewName) {
         require_once __DIR__ . '/../Views/header.php';
         require_once __DIR__ . '/../Views/'. $viewName . '.php';
