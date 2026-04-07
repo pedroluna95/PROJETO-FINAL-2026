@@ -1,12 +1,12 @@
 
 <section class="mb-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 <div class="lg:col-span-7">
-<span class="text-primary font-bold tracking-widest uppercase text-xs mb-4 block">Bem-vindo ao CEFETURING</span>
+<span class="text-primary font-bold tracking-widest uppercase text-xs mb-4 block">Bem-vindo ao  Portal de estágio CEFET</span>
 <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tighter text-on-surface leading-none mb-6">
                     Onde o talento <br/>encontra a <span class="text-primary">oportunidade</span>.
                 </h1>
 <p class="text-xl text-on-surface-variant mb-10 max-w-xl leading-relaxed">
-                    Explore o portal oficial de estágios do CEFET/RJ. Conectamos seu estágio com o von neumann.
+                    Explore o portal oficial de estágios do CEFET/RJ.
                 </p>
 <div class="flex flex-wrap gap-4">
 <button class="bg-gradient-to-r from-primary to-primary-container text-on-primary px-8 py-4 rounded-full font-bold text-lg editorial-shadow hover:brightness-110 active:scale-95 transition-all">
