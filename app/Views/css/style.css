@@ -1,0 +1,73 @@
+/* Configurações de Cores e Fontes */
+:root {
+    --primary: #5a2dfd;
+    --background-light: #f8f6f6;
+    --background-dark: #221610;
+}
+
+/* Estilos Gerais */
+body {
+    font-family: 'Public Sans', sans-serif;
+    background-color: var(--background-light);
+    color: #0f172a; /* slate-900 */
+    min-height: 100vh;
+    margin: 0;
+}
+
+.dark body {
+    background-color: var(--background-dark);
+    color: #f1f5f9; /* slate-100 */
+}
+
+/* Header e Navegação */
+header {
+    background-color: rgba(248, 246, 246, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.dark header {
+    background-color: rgba(34, 22, 16, 0.8);
+    border-bottom: 1px solid #1e293b;
+}
+
+/* Botões Personalizados */
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+    font-weight: 700;
+    padding: 0.625rem 1.5rem;
+    border-radius: 0.75rem;
+    transition: all 0.2s;
+    /* Corrigido: Sombra agora usa o azul */
+    box-shadow: 0 10px 15px -3px rgba(90, 45, 253, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: #4a1edb; /* Um azul um pouco mais escuro para o hover */
+}
+
+/* Cards de Vagas */
+.job-card {
+    background-color: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    transition: all 0.3s;
+}
+
+.dark .job-card {
+    background-color: #0f172a;
+    border-color: #1e293b;
+}
+
+.job-card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    /* Corrigido: Borda de hover agora usa o azul */
+    border-color: rgba(90, 45, 253, 0.3);
+}
+
+/* Utilitários de Texto */
+.text-primary { color: var(--primary); }
+.font-black { font-weight: 900; }
+.font-extrabold { font-weight: 800; }
