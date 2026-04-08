@@ -1,30 +1,3 @@
-<?php
-// <!DOCTYPE html>
-// <html lang="en">
-// <head>
-//     <meta charset="UTF-8">
-//     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-//     <title>Login</title>
-// </head>
-// <body>
-
-//     <button type="button" onclick="window.location.href='../public/index.php?url=home'">
-//         Voltar
-//     </button>
-
-//     <button type="button" onclick="window.location.href='../public/index.php?url=home/cadastro'">
-//         Não tem conta? Cadastre-se
-//     </button>
-
-// </body>
-// </html>
-?>
-
-
-
-
-
-
 <section class="w-full lg:w-1/2 flex items-center justify-center p-8 bg-surface">
 <div class="w-full max-w-md space-y-12">
    
@@ -34,8 +7,6 @@
             <span class="editorial-gradient h-8 w-8 rounded flex items-center justify-center">
                 <span class="material-symbols-outlined text-white text-lg">link</span>
             </span>
-
-            <span class="text-on-surface font-headline text-xl font-extrabold tracking-tight">Login</span>
         </div>
         
         <h2 class="font-headline text-4xl font-extrabold text-on-surface tracking-tight">Bem-vindo de volta</h2>
@@ -68,15 +39,21 @@
 
     </div>
 
-    <button type="submit"> Fazer Login </button>
-    <button type="button" onclick="window.location.href='../public/index.php?url=home'"> Voltar </button>
-</form>
+    <button type="submit" class="bg-primary text-on-primary px-10 py-4 rounded-full font-bold editorial-shadow hover:brightness-110 transition-all"> Fazer Login </button>
+    
+    <p class="text-center text-on-surface-variant font-medium mt-8">
+            Não tem uma conta?
+        <a class="text-primary font-bold hover:underline ml-1" href="?url=home/cadastro">Cadastre-se</a>
+    </p>
+    
 </div>
 </div>
 </section>
-</main>
-</body>
-</html>
+
+
+
+
+
 
 
 
