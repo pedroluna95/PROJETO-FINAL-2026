@@ -58,36 +58,7 @@
 
 </section>
 
-<!-- SESSÃO DE BLOG E NOTICIAS -->
-<section class="mb-24">
-    <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-        <div>
-            <h2 class="text-4xl font-extrabold tracking-tighter mb-4">Insights &amp; Notícias</h2>
-            <p class="text-on-surface-variant max-w-md">Mantenha-se atualizado com as tendências do mercado e dicas exclusivas para estagiários.</p>
-        </div>
-        <button class="text-primary font-bold flex items-center gap-2 hover:gap-4 transition-all">
-            Ver todas as matérias <span class="material-symbols-outlined">chevron_right</span>
-        </button>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-
-        <!-- CARD DA MATÉRIA -->
-        <article class="flex flex-col gap-6 group">
-            <div class="aspect-[16/10] overflow-hidden rounded-lg bg-surface-container-high">
-                <img alt="Student learning" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Young student focused on a tablet screen in a bright library with bokeh background of book shelves" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfeJNbTynGXG7v2Le0mLaYNjOl0hfxdU2hLB02-9VYoyry_sbjd5KKHW45aLbb1aDOu0ZaoH_RXHEKKd2phWaUtYTNC-zQra1aNOnjYUdvNxy80-CgMC657xytP4a6ff2MXMW9-kI5IoBY5Tsv9VsLyaazYvUI1uIfI3N4oR6SvKXCpIc7J45QY9Per5QudJT9QO9wnQvppPzinaKTjq7X1jEVr_-7b1_LmCYJjsPpB2Dh7F--woAt6O94GWnberAGpts6BdYtJQg" />
-            </div>
-            <div class="flex flex-col gap-3">
-                <div class="flex items-center gap-4">
-                    <span class="text-xs font-bold uppercase tracking-widest text-primary"><?php echo "ÁREA DA MATÉRIA" ?></span>
-                    <span class="text-xs text-on-surface-variant"><?php echo "DATA DE PUBLICAÇÃO DA MATÉRIA" ?> </span>
-                </div>
-                <h3 class="text-2xl font-bold leading-tight group-hover:text-primary transition-colors"><?php echo "TEMA DA MATÉRIA" ?></h3>
-                <p class="text-on-surface-variant line-clamp-2"><?php echo "DESCRIÇÃO DA MATÉRIA" ?></p>
-            </div>
-        </article>
-
-    </div>
-</section>
+    
 
 <!-- Quick Access / CTA Section -->
 <section class="bg-surface-container-low rounded-3xl p-12 md:p-20 relative overflow-hidden">

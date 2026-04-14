@@ -2,7 +2,7 @@
         <section class="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 md:p-24 bg-surface">
             <div class="w-full max-w-md">
                 <div class="mb-10 text-center lg:text-left">
-                    <h2 class="font-extrabold text-3xl font-bold text-on-surface mb-2">Crie sua conta</h2>
+                    <h2 class="font-headline text-4xl font-extrabold text-on-surface tracking-tight">Crie sua conta</h2>
                     <p class="text-on-surface-variant font-medium">Preencha os dados abaixo para iniciar sua jornada.</p>
                 </div>
                 <form class="space-y-5">
@@ -55,14 +55,14 @@
                         </label>
                     </div>
                     <!-- Submit Button -->
-                    <button class="w-full editorial-gradient text-white font-headline font-bold py-4 rounded-full shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group mt-4" type="submit">
+                    <button class=" bg-primary w-full editorial-gradient text-white font-headline font-bold py-4 rounded-full shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group mt-4" type="submit">
                         Cadastrar-se
                         <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
                     </button>
                     <!-- Footer Link -->
                     <p class="text-center text-on-surface-variant font-medium mt-8">
                         Já tenho uma conta?
-                        <a class="text-primary font-bold hover:underline ml-1" href="#">Entrar agora</a>
+                        <a class=" text-primary font-bold hover:underline ml-1" href="?url=home/login">Entrar agora</a>
                     </p>
                 </form>
                 

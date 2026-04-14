@@ -39,7 +39,7 @@
 
     </div>
 
-    <button type="submit" class="bg-primary text-on-primary px-10 py-4 rounded-full font-bold editorial-shadow hover:brightness-110 transition-all"> Fazer Login </button>
+    <button type="submit" class="bg-primary text-white px-10 py-4 rounded-full font-bold editorial-shadow hover:brightness-110 transition-all"> Fazer Login </button>
     
     <p class="text-center text-on-surface-variant font-medium mt-8">
             Não tem uma conta?

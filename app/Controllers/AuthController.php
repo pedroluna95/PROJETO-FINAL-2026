@@ -2,11 +2,16 @@
 
 namespace App\Controllers;
 
-class AuthController {
+class AuthController extends BaseController {
 
 
     public function login(){
 
+
+    }
+
+    public function cadastro(){
+    
 
     }
 }

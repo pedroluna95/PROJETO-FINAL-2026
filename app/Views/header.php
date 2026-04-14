@@ -49,7 +49,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <!-- Barra de paginas -->
                         <nav class="hidden md:flex items-center gap-6">
                             <a class="<?php echo $pagina == 'home' ? 'text-primary border-b-2 border-primary pb-1' : 'text-slate-600 dark:text-slate-300 hover:text-primary'; ?>" href="?url=home">Início</a>
-                            <a class="<?php echo $pagina == 'vagas' ? 'text-primary border-b-2 border-primary pb-1' : 'text-slate-600 dark:text-slate-300 hover:text-primary'; ?>" href="?url=vagas">Vagas</a>
+                            <a class="<?php echo $pagina == 'vagas' ? 'text-primary border-b-2 border-primary pb-1' : 'text-slate-600 dark:text-slate-300 hover:text-primary'; ?>" href="?url=vagas/open">Vagas</a>
                             <a class="<?php echo $pagina == 'inscricoes' ? 'text-primary border-b-2 border-primary pb-1' : 'text-slate-600 dark:text-slate-300 hover:text-primary'; ?>" href="?url=inscricoes">Minhas Inscrições</a>
                         </nav>
 
