@@ -24,7 +24,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 extend: {
                     colors: { 
                         
-                        "primary": "#5a2dfd" 
+                        "primary": "#0077fc" 
                     },
                     fontFamily: { "display": ["Public Sans", "sans-serif"] }
                 }
@@ -34,7 +34,8 @@ if (session_status() === PHP_SESSION_NONE) {
 </head>
 <body class="font-display min-h-screen">
     <div class="relative flex flex-col w-full overflow-x-hidden">
-        <header class="sticky top-0 z-50 w-full">
+
+        <header class="sticky top-0 z-50 w-full bg-primary shadow-md" >
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center justify-between h-16">
                     
@@ -42,15 +43,15 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div class="flex items-center gap-8">
                         
                         <div class="flex items-center gap-3 text-primary cursor-pointer" onclick="window.location.href='?url=home'">
-                            <span class="material-symbols-outlined text-3xl font-bold">rocket_launch</span>
-                            <h1 class="text-slate-900 dark:text-white text-xl font-extrabold tracking-tight">Portal Estágio CEFET</h1>
+                            <span class="material-symbols-outlined text-3x1 font-bold text-white">rocket_launch</span>
+                            <h1 class="text-slate-900 dark:text-white text-xl font-extrabold tracking-tight text-white">Portal Estágio CEFET</h1>
                         </div>
                         
                 <!-- Barra de paginas -->
                         <nav class="hidden md:flex items-center gap-6">
-                            <a class="<?php echo $pagina == 'home' ? 'text-primary border-b-2 border-primary pb-1' : 'text-slate-600 dark:text-slate-300 hover:text-primary'; ?>" href="?url=home">Início</a>
-                            <a class="<?php echo $pagina == 'vagas' ? 'text-primary border-b-2 border-primary pb-1' : 'text-slate-600 dark:text-slate-300 hover:text-primary'; ?>" href="?url=vagas/open">Vagas</a>
-                            <a class="<?php echo $pagina == 'inscricoes' ? 'text-primary border-b-2 border-primary pb-1' : 'text-slate-600 dark:text-slate-300 hover:text-primary'; ?>" href="?url=inscricoes">Minhas Inscrições</a>
+                            <a class="<?php echo $pagina == 'home' ? 'text-white border-b-2 border-white pb-1' : 'text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all duration-300'; ?>" href="?url=home">Início</a>                        
+                            <a class="<?php echo $pagina == 'vagas' ? 'text-white border-b-2 border-white pb-1' : 'text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all duration-300'; ?>" href="?url=vagas/open">Vagas</a>
+                            <a class="<?php echo $pagina == 'inscricoes' ? 'text-white border-b-2 border-white pb-1' : 'text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all duration-300'; ?>" href="?url=inscricoes">Minhas Inscrições</a>
                         </nav>
 
                     </div>
@@ -79,8 +80,8 @@ if (session_status() === PHP_SESSION_NONE) {
                             <?php else: ?>
 
                                 <div class="flex items-center gap-2">
-                                    <a href="?url=home/login" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">Login</a>
-                                    <a href="?url=home/cadastro" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">Cadastrar</a>
+                                    <a class="text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all duration-300" href="?url=home/login">Login</a>
+                                    <a class="text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all duration-300" href="?url=home/cadastro"> Cadastrar</a>
                                 </div>
 
                             <?php endif; ?>
