@@ -1,11 +1,11 @@
 <!-- Registration Form Section -->
-        <section class="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 md:p-24 bg-surface">
+<section class="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 md:p-24 bg-surface">
             <div class="w-full max-w-md">
                 <div class="mb-10 text-center lg:text-left">
                     <h2 class="font-headline text-4xl font-extrabold text-on-surface tracking-tight">Crie sua conta</h2>
                     <p class="text-on-surface-variant font-medium">Preencha os dados abaixo para iniciar sua jornada.</p>
                 </div>
-                <form id="cadastroForm" class="space-y-1" method="POST" action="../public/index.php?url=auth/login" novalidate>
+                <form id="cadastroForm" class="space-y-4" method="POST" action="../public/index.php?url=auth/login" novalidate>
                     
                     <!-- Full Name -->
                     <div class="space-y-1.5">
