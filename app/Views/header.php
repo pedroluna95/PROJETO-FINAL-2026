@@ -51,7 +51,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         <nav class="hidden md:flex items-center gap-6">
                             <a class="<?php echo $pagina == 'home' ? 'text-white border-b-2 border-white pb-1' : 'text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all duration-300'; ?>" href="?url=home">Início</a>                        
                             <a class="<?php echo $pagina == 'vagas' ? 'text-white border-b-2 border-white pb-1' : 'text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all duration-300'; ?>" href="?url=vagas/open">Vagas</a>
-                            <a class="<?php echo $pagina == 'inscricoes' ? 'text-white border-b-2 border-white pb-1' : 'text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all duration-300'; ?>" href="?url=inscricoes">Minhas Inscrições</a>
+                            <a class="<?php echo $pagina == 'inscricoes' ? 'text-white border-b-2 border-white pb-1' : 'text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all duration-300'; ?>" href="?url=vagas/open">Minhas Inscrições</a>
                         </nav>
 
                     </div>

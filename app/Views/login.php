@@ -15,7 +15,7 @@
 
 
 <!-- Form -->
-<form method ="POST" action = "../public/index.php?url=auth/login" class="space-y-6">
+<form method ="POST" action = "../public/index.php?url=auth/login" class="space-y-1">
 
     <div class="space-y-2">
 
