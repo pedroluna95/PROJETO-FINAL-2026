@@ -1,9 +1,0 @@
-RewriteEngine On # Habilita o motor de reescrita de URL do Apache.
-
-# As linhas abaixo garantem que se o arquivo ou diretório existir, ele será servido diretamente.
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-
-# Redireciona todas as outras requisições para public/index.php, passando a URL como parâmetro.
-# Note que a regra aponta para public/index.php porque o index principal está lá.
-RewriteRule ^(.*)$ public/index.php?url=$1 [QSA,L]

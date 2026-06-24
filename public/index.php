@@ -1,10 +1,20 @@
 <?php
 
-use Core\Router; // Importa a classe Router do namespace Core para gerenciar as rotas da aplicação.
+use Illuminate\Foundation\Application;
+use Illuminate\Http\Request;
 
-require_once __DIR__ . '/../vendor/autoload.php'; // Inclui o autoloader do Composer para carregar automaticamente as classes.
+define('LARAVEL_START', microtime(true));
 
-$router = new Router(); // Instancia o roteador para processar as requisições.
-$router->run(); // Executa o roteador, que irá despachar a requisição para o controlador e método apropriados.
+// Determine if the application is in maintenance mode...
+if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
+    require $maintenance;
+}
 
-?>
+// Register the Composer autoloader...
+require __DIR__.'/../vendor/autoload.php';
+
+// Bootstrap Laravel and handle the request...
+/** @var Application $app */
+$app = require_once __DIR__.'/../bootstrap/app.php';
+
+$app->handleRequest(Request::capture());
