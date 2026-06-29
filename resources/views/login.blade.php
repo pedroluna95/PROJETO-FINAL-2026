@@ -9,9 +9,9 @@
             <h2 class="font-headline text-4xl font-extrabold text-on-surface tracking-tight">Bem-vindo de volta</h2>
             <p class="text-on-surface-variant font-medium">Acesse sua conta para gerenciar suas candidaturas e explorar novas vagas.</p>
         </div>
-        
+
         <form id="loginForm" class="space-y-4" method="POST" action="../public/index.php?url=auth/login" novalidate>
-            
+
             <!-- Email -->
             <div class="space-y-1.5">
                 <label class="text-sm font-semibold text-on-surface-variant ml-1" for="email">E-mail corporativo ou acadêmico</label>
@@ -50,7 +50,7 @@
                 <a class="text-primary font-bold hover:underline ml-1" href="?url=home/cadastro">Cadastre-se</a>
             </p>
         </form>
-        
+
         <!-- Help Link -->
         <div class="mt-12 pt-8 border-t border-surface-container-highest text-center">
             <button class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center gap-2 mx-auto">
@@ -63,13 +63,20 @@
 
 <script>
     // ── Utilitários ──────────────────────────────────────────────
-    function mostrar(id) { document.getElementById(id)?.classList.remove('hidden'); }
-    function esconder(id) { document.getElementById(id)?.classList.add('hidden'); }
+    function mostrar(id) {
+        document.getElementById(id)?.classList.remove('hidden');
+    }
+
+    function esconder(id) {
+        document.getElementById(id)?.classList.add('hidden');
+    }
+
     function setErro(input, erroId) {
         input.classList.add('ring-2', 'ring-red-400');
         input.classList.remove('ring-primary/20');
         mostrar(erroId);
     }
+
     function limparErro(input, erroId) {
         input.classList.remove('ring-2', 'ring-red-400');
         esconder(erroId);

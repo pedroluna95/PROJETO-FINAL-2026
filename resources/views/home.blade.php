@@ -28,7 +28,7 @@
 <section class="mb-24">
     <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-auto md:h-[400px]">
         <div class="md:col-span-2 md:row-span-2 bg-surface-container-low rounded-xl p-10 flex flex-col justify-between group cursor-pointer hover:bg-surface-container transition-colors">
-            
+
             <div>
                 <span class="material-symbols-outlined text-4xl text-primary mb-6">work_history</span>
                 <h3 class="text-3xl font-bold tracking-tight mb-4">Vagas em Destaque</h3>
@@ -63,7 +63,7 @@
 
 </section>
 
-    
+
 
 <!-- Quick Access / CTA Section -->
 <section class="bg-surface-container-low rounded-3xl p-12 md:p-20 relative overflow-hidden">

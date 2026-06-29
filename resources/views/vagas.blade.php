@@ -8,22 +8,22 @@
             <!-- Search -->
             <div>
                 <label class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3 block">Buscar</label>
-                <input class="w-full px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="Nome da vaga..." type="text"/>
+                <input class="w-full px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="Nome da vaga..." type="text" />
             </div>
             <!-- Sectors -->
             <div class="pt-6 border-t border-slate-200 dark:border-slate-800">
                 <h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-4">Setores</h3>
                 <div class="space-y-2">
                     <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition-colors">
-                        <input checked="" class="rounded border-slate-300 text-primary focus:ring-primary bg-transparent" type="checkbox"/>
+                        <input checked="" class="rounded border-slate-300 text-primary focus:ring-primary bg-transparent" type="checkbox" />
                         <span class="text-sm font-medium">Todos os setores</span>
                     </label>
                     <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition-colors">
-                        <input class="rounded border-slate-300 text-primary focus:ring-primary bg-transparent" type="checkbox"/>
+                        <input class="rounded border-slate-300 text-primary focus:ring-primary bg-transparent" type="checkbox" />
                         <span class="text-sm font-medium">Sinfo</span>
                     </label>
                     <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition-colors">
-                        <input class="rounded border-slate-300 text-primary focus:ring-primary bg-transparent" type="checkbox"/>
+                        <input class="rounded border-slate-300 text-primary focus:ring-primary bg-transparent" type="checkbox" />
                         <span class="text-sm font-medium">Telecomunicações</span>
                     </label>
                 </div>
@@ -33,11 +33,11 @@
                 <h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-4">Modalidade</h3>
                 <div class="space-y-2">
                     <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition-colors">
-                        <input checked="" class="text-primary focus:ring-primary bg-transparent" name="modality" type="radio"/>
+                        <input checked="" class="text-primary focus:ring-primary bg-transparent" name="modality" type="radio" />
                         <span class="text-sm font-medium">Presencial</span>
                     </label>
                     <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition-colors">
-                        <input class="text-primary focus:ring-primary bg-transparent" name="modality" type="radio"/>
+                        <input class="text-primary focus:ring-primary bg-transparent" name="modality" type="radio" />
                         <span class="text-sm font-medium">Híbrido</span>
                     </label>
                 </div>
