@@ -58,8 +58,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Usuários_has_Atribuicoes` (
   `User_ID` INT NOT NULL,
   `Atribuicoes_ID` INT NOT NULL,
   PRIMARY KEY (`User_ID`, `Atribuicoes_ID`),
-  INDEX `fk_Usuários_has_Atribuicoes_Atribuicoes1_idx` (`Atribuicoes_ID` ASC) VISIBLE,
-  INDEX `fk_Usuários_has_Atribuicoes_Usuários_idx` (`User_ID` ASC) VISIBLE,
+  INDEX `fk_Usuários_has_Atribuicoes_Atribuicoes1_idx` (`Atribuicoes_ID` ASC),
+  INDEX `fk_Usuários_has_Atribuicoes_Usuários_idx` (`User_ID` ASC),
   CONSTRAINT `fk_Usuários_has_Atribuicoes_Usuários`
     FOREIGN KEY (`User_ID`)
     REFERENCES `mydb`.`Usuários` (`user_ID`)
