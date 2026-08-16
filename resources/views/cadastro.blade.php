@@ -73,17 +73,6 @@
                     </div>
                 </button>
 
-                <button type="button" onclick="selecionarTipo('administrador')" class="p-6 border-2 border-gray-200 rounded-xl hover:border-[#0077fc] hover:bg-blue-50 transition-all text-left group md:col-span-2">
-                    <div class="flex items-start gap-4">
-                        <div class="p-3 bg-blue-50 group-hover:bg-[#0077fc] rounded-lg transition-colors">
-                            <span class="material-symbols-outlined text-[#0077fc] group-hover:text-white">shield</span>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg mb-1">Administrador</h3>
-                            <p class="text-sm text-gray-600">Administrador do sistema</p>
-                        </div>
-                    </div>
-                </button>
             </div>
 
             {{-- Passo 2: Formulário dinâmico --}}
@@ -107,8 +96,8 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">CPF</label>
-                    <input type="text" name="cpf" placeholder="000.000.000-00" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none" required/>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">CPF (somente números)</label>
+                    <input type="text" name="cpf" placeholder="Somente números" inputmode="numeric" pattern="[0-9]*" maxlength="11" oninput="this.value=this.value.replace(/\D/g,'')" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none" required/>
                 </div>
 
                 <div id="campos-especificos"></div>
@@ -138,52 +127,20 @@
 
 <script>
     const camposEspecificos = {
-        /*
         aluno: `
-             <div>
+            <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Matrícula</label>
-                <input type="text" name="matricula" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none" required/>
+                <input type="text" name="matricula" placeholder="Digite sua matrícula" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none" required/>
             </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Curso</label>
-                <select name="curso" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none bg-white" required>
-                    <option value="">Selecione...</option>
-                    <option value="Engenharia de Computação">Engenharia de Computação</option>
-                    <option value="Engenharia Civil">Engenharia Civil</option>
-                    <option value="Engenharia Mecânica">Engenharia Mecânica</option>
-                    <option value="Engenharia Elétrica">Engenharia Elétrica</option>
-                </select>
-            </div>`,
-        
-        supervisor: `
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Empresa</label>
-                <input type="text" name="empresa" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none" required/>
-            </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Cargo</label>
-                <input type="text" name="cargo" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none" required/>
-            </div>`,
+        `,
         orientador: `
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Área de Atuação</label>
-                <input type="text" name="area_atuacao" placeholder="Ex: Computação, Civil, Mecânica..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none" required/>
-            </div>`,
-        contratante: `
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Nome da Empresa</label>
-                <input type="text" name="empresa" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none" required/>
+                <label class="block text-sm font-medium text-gray-700 mb-2">SIAPE (8 dígitos)</label>
+                <input type="text" name="siape" placeholder="Digite o SIAPE" inputmode="numeric" pattern="[0-9]*" maxlength="8" oninput="this.value=this.value.replace(/\D/g,'')" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none" required/>
             </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">CNPJ</label>
-                <input type="text" name="cnpj" placeholder="00.000.000/0000-00" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none" required/>
-            </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Cargo</label>
-                <input type="text" name="cargo" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none" required/>
-            </div>`,
-            */
-        administrador: ''
+        `,
+        supervisor: '',
+        contratante: ''
     };
 
     function selecionarTipo(tipo) {
@@ -200,13 +157,34 @@
         document.getElementById('subtitulo').textContent = 'Selecione o tipo de usuário';
     }
 
-    // Validação de senhas
+    // Validação de senhas e campos obrigatórios por tipo
     document.getElementById('passo-form').addEventListener('submit', function (e) {
+        const tipo = document.getElementById('tipo').value;
         const senha = document.getElementById('senha').value;
         const confirmar = document.getElementById('confirmar_senha').value;
+
         if (senha !== confirmar) {
             e.preventDefault();
             alert('As senhas não coincidem!');
+            return;
+        }
+
+        if (tipo === 'aluno') {
+            const matricula = document.querySelector('input[name="matricula"]');
+            if (!matricula || !matricula.value.trim()) {
+                e.preventDefault();
+                alert('Aluno deve informar a matrícula obrigatoriamente.');
+                matricula?.focus();
+            }
+        }
+
+        if (tipo === 'orientador') {
+            const siape = document.querySelector('input[name="siape"]');
+            if (!siape || !siape.value.trim()) {
+                e.preventDefault();
+                alert('Orientador deve informar o SIAPE obrigatoriamente.');
+                siape?.focus();
+            }
         }
     });
 </script>

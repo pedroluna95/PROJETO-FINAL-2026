@@ -9,7 +9,10 @@
                 {{ strtoupper(substr(session('user_name', 'A'), 0, 1)) }}
             </div>
             <h2 class="text-xl font-semibold text-gray-900 mb-1">{{ session('user_name', 'Aluno') }}</h2>
-            <p class="text-sm text-gray-500 mb-4">{{ session('user_email', 'aluno@cefet-rj.br') }}</p>
+            <div class="space-y-1 mb-4">
+                <p class="text-sm text-gray-600">{{ session('user_email', 'email@nao-cadastrado.com') }}</p>
+                <p class="text-sm text-gray-600">{{ session('user_cpf', 'CPF não cadastrado') }}</p>
+            </div>
             <span class="inline-flex items-center gap-1 px-3 py-1 bg-blue-50 text-[#0077fc] rounded-full text-xs font-medium mb-6">
                 <span class="material-symbols-outlined text-[14px]">badge</span>
                 {{ ucfirst(session('user_type', 'aluno')) }}
@@ -18,16 +21,18 @@
             <div class="space-y-2 border-t border-gray-100 pt-4 text-left">
                 <div class="flex justify-between text-sm">
                     <span class="text-gray-500">Matrícula</span>
-                    <span class="font-medium text-gray-900">{{ session('user_matricula', '20231234') }}</span>
+                    <span class="font-medium text-gray-900">{{ session('user_matricula', '') }}</span>
                 </div>
+                @unless(session('user_type') === 'administrador')
                 <div class="flex justify-between text-sm">
                     <span class="text-gray-500">Curso</span>
-                    <span class="font-medium text-gray-900">Engenharia de Computação</span>
+                    <span class="font-medium text-gray-900">{{ session('user_curso', '—') }}</span>
                 </div>
                 <div class="flex justify-between text-sm">
                     <span class="text-gray-500">Período</span>
-                    <span class="font-medium text-gray-900">5º</span>
+                    <span class="font-medium text-gray-900">{{ session('user_periodo', '—') }}</span>
                 </div>
+                @endunless
             </div>
         </div>
 
@@ -47,21 +52,7 @@
                         <input type="email" name="email" value="{{ session('user_email', '') }}"
                             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none"/>
                     </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">CPF</label>
-                        <input type="text" name="cpf" value="{{ session('user_cpf', '') }}" placeholder="000.000.000-00"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none"/>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Telefone</label>
-                        <input type="tel" name="telefone" value="{{ session('user_telefone', '') }}" placeholder="(21) 99999-9999"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none"/>
-                    </div>
-                    <div class="sm:col-span-2">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Endereço</label>
-                        <input type="text" name="endereco" value="" placeholder="Rua, número, bairro"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none"/>
-                    </div>
+                    <!-- CPF não pode ser editado e não aparece no formulário -->
                     <div class="sm:col-span-2 flex justify-end">
                         <button type="submit" class="px-6 py-2.5 bg-[#0077fc] text-white rounded-lg hover:bg-[#0056c9] transition-colors text-sm font-medium">
                             Salvar Alterações

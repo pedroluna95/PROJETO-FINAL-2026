@@ -40,7 +40,7 @@
                     <label class="block text-sm font-medium text-gray-700 mb-2" for="cpf">CPF</label>
                     <div class="relative">
                         <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400">badge</span>
-                        <input class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none transition-all" id="cpf" name="cpf" placeholder="000.000.000-00" type="text" />
+                        <input class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none transition-all" id="cpf" name="cpf" placeholder="Somente números" type="text" inputmode="numeric" pattern="[0-9]*" oninput="this.value=this.value.replace(/\D/g,'')" />
                     </div>
                     <p id="erro-cpf" class="hidden text-xs text-red-500 mt-1.5 flex items-center gap-1"><span class="material-symbols-outlined text-sm">error</span> Informe um CPF válido.</p>
                 </div>
@@ -67,14 +67,7 @@
                         </select>
                     </div>
                 </div>
-                <!-- Telefone -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2" for="telefone">Telefone</label>
-                    <div class="relative">
-                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400">phone</span>
-                        <input class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none transition-all" id="telefone" name="telefone" placeholder="(21) 99999-9999" type="tel" />
-                    </div>
-                </div>
+                <!-- Telefone removido (não armazenado no BD) -->
                 <!-- Password Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>

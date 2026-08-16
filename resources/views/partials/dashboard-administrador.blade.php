@@ -31,7 +31,8 @@
         <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
             <h2 class="text-xl font-semibold mb-4">Ações Rápidas</h2>
             <div class="space-y-3">
-                <button class="w-full flex items-center gap-3 p-4 border-2 border-gray-200 rounded-lg hover:border-[#0077fc] hover:bg-blue-50 transition-all text-left">
+                <a href="/admin/usuarios" class="w-full block">
+                <div class="w-full flex items-center gap-3 p-4 border-2 border-gray-200 rounded-lg hover:border-[#0077fc] hover:bg-blue-50 transition-all text-left">
                     <div class="p-2 bg-blue-50 rounded-lg">
                         <span class="material-symbols-outlined text-[#0077fc]">person_add</span>
                     </div>
@@ -39,7 +40,8 @@
                         <p class="font-medium">Cadastrar Novo Usuário</p>
                         <p class="text-sm text-gray-500">Adicionar aluno, supervisor ou orientador</p>
                     </div>
-                </button>
+                </div>
+                </a>
                 <button class="w-full flex items-center gap-3 p-4 border-2 border-gray-200 rounded-lg hover:border-[#0077fc] hover:bg-blue-50 transition-all text-left">
                     <div class="p-2 bg-green-50 rounded-lg">
                         <span class="material-symbols-outlined text-green-600">add_circle</span>

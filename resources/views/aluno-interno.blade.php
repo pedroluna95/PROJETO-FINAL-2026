@@ -478,10 +478,7 @@
                                 <input type="text" class="input-figma" value="Engenharia de Computação" />
                             </div>
                         </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Telefone</label>
-                            <input type="tel" class="input-figma" placeholder="(21) 99999-9999" />
-                        </div>
+                        <!-- Telefone removido (não armazenado no BD) -->
                         <button type="button" onclick="salvarPerfil(this)" class="btn-primary mt-4 flex items-center gap-2">
                             <span class="material-symbols-outlined text-xl">save</span>
                             Salvar Alterações
