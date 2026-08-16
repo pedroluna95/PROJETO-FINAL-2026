@@ -11,17 +11,22 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `projeto` DEFAULT CHARACTER SET utf8 ;
+USE `projeto` ;
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Usuários`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Usuários` (
+-- -----------------------------------------------------
+-- Table `projeto`.`Usuarios`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `projeto`.`usuarios` (
   `user_ID` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(60) NOT NULL,
   `Email` VARCHAR(45) NOT NULL,
-  `Senha` VARCHAR(30) NOT NULL,
+  `Senha` VARCHAR(255) NOT NULL,
+  `atribuicao` VARCHAR(60) NULL,
+  `cpf` VARCHAR(14) NULL,
   PRIMARY KEY (`user_ID`))
 ENGINE = InnoDB;
 
@@ -29,7 +34,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`Vagas`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Vagas` (
+-- -----------------------------------------------------
+-- Table `projeto`.`Vagas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `projeto`.`vagas` (
   `Vaga_ID` INT NOT NULL,
   `Nome_vaga` VARCHAR(60) NOT NULL,
   `Desc_vaga` VARCHAR(45) NOT NULL,
@@ -44,7 +52,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`Atribuicoes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Atribuicoes` (
+-- -----------------------------------------------------
+-- Table `projeto`.`Atribuicoes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `projeto`.`atribuicoes` (
   `Atribuicao_ID` INT NOT NULL,
   `Nome_atribuicao` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`Atribuicao_ID`))
@@ -54,20 +65,23 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`Usuários_has_Atribuicoes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Usuários_has_Atribuicoes` (
+-- -----------------------------------------------------
+-- Table `projeto`.`Usuarios_has_Atribuicoes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `projeto`.`usuarios_has_atribuicoes` (
   `User_ID` INT NOT NULL,
   `Atribuicoes_ID` INT NOT NULL,
   PRIMARY KEY (`User_ID`, `Atribuicoes_ID`),
-  INDEX `fk_Usuários_has_Atribuicoes_Atribuicoes1_idx` (`Atribuicoes_ID` ASC),
-  INDEX `fk_Usuários_has_Atribuicoes_Usuários_idx` (`User_ID` ASC),
-  CONSTRAINT `fk_Usuários_has_Atribuicoes_Usuários`
+  INDEX `fk_usuarios_has_atribuicoes_atribuicoes1_idx` (`Atribuicoes_ID` ASC),
+  INDEX `fk_usuarios_has_atribuicoes_usuarios_idx` (`User_ID` ASC),
+  CONSTRAINT `fk_usuarios_has_Atribuicoes_Usuarios`
     FOREIGN KEY (`User_ID`)
-    REFERENCES `mydb`.`Usuários` (`user_ID`)
+    REFERENCES `projeto`.`usuarios` (`user_ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Usuários_has_Atribuicoes_Atribuicoes1`
+  CONSTRAINT `fk_usuarios_has_atribuicoes_atribuicoes1`
     FOREIGN KEY (`Atribuicoes_ID`)
-    REFERENCES `mydb`.`Atribuicoes` (`Atribuicao_ID`)
+    REFERENCES `projeto`.`atribuicoes` (`Atribuicao_ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

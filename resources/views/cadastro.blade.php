@@ -111,11 +111,6 @@
                     <input type="text" name="cpf" placeholder="000.000.000-00" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none" required/>
                 </div>
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Telefone</label>
-                    <input type="tel" name="telefone" placeholder="(21) 99999-9999" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none" required/>
-                </div>
-
                 <div id="campos-especificos"></div>
 
                 <div>
@@ -143,8 +138,9 @@
 
 <script>
     const camposEspecificos = {
+        /*
         aluno: `
-            <div>
+             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Matrícula</label>
                 <input type="text" name="matricula" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none" required/>
             </div>
@@ -158,6 +154,7 @@
                     <option value="Engenharia Elétrica">Engenharia Elétrica</option>
                 </select>
             </div>`,
+        
         supervisor: `
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Empresa</label>
@@ -185,6 +182,7 @@
                 <label class="block text-sm font-medium text-gray-700 mb-2">Cargo</label>
                 <input type="text" name="cargo" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none" required/>
             </div>`,
+            */
         administrador: ''
     };
 
