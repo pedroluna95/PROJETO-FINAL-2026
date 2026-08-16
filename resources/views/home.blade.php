@@ -1,87 +1,89 @@
 @extends('layouts.app')
 
 @section('content')
+{{-- Hero do Figma — gradiente azul #0077fc → #0056c9 --}}
+<section class="fig-gradient text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+        <div class="max-w-3xl">
+            <span class="inline-flex items-center gap-2 px-4 py-1.5 bg-white/15 rounded-full text-sm font-medium text-blue-100 mb-6">
+                <span class="material-symbols-outlined text-[18px]">school</span>
+                CEFET-RJ — Estágios Internos
+            </span>
+            <h1 class="text-4xl sm:text-5xl font-bold leading-tight mb-6">
+                Seu estágio começa aqui
+            </h1>
+            <p class="text-lg text-blue-100 mb-8 leading-relaxed">
+                Portal oficial de estágios do CEFET-RJ. Monitoria, projetos de extensão e estágios
+                internos em um só lugar — com controle de horas, tutorial completo e empresas conveniadas.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="/cadastro" class="btn-pill btn-pill-primary text-center">Criar Conta</a>
+                <a href="/login" class="btn-pill btn-pill-secondary text-center">Já tenho conta</a>
+            </div>
+        </div>
+    </div>
+</section>
 
-
-<section class="mb-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-    <div class="lg:col-span-7">
-        <span class="text-primary font-bold tracking-widest uppercase text-xs mb-4 block">Bem-vindo ao Portal de estágio CEFET</span>
-        <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tighter text-on-surface leading-none mb-6">
-            Onde o talento <br />encontra a <span class="text-primary">oportunidade</span>.
-        </h1>
-        <p class="text-xl text-on-surface-variant mb-10 max-w-xl leading-relaxed">
-            Explore o portal oficial de estágios do CEFET/RJ.
+{{-- Funcionalidades (estilo Figma) --}}
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-3">Tudo o que você precisa</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+            Uma plataforma completa para alunos, supervisores, orientadores e empresas conveniadas.
         </p>
-        <div class="flex flex-wrap gap-4">
-            <button class="bg-gradient-to-r from-primary to-primary-container text-on-primary px-8 py-4 rounded-full font-bold text-lg editorial-shadow hover:brightness-110 active:scale-95 transition-all">
-                Explorar Vagas
-            </button>
-            <button class="bg-surface-container-high text-on-surface px-8 py-4 rounded-full font-bold text-lg hover:bg-surface-container-highest transition-all">
-                Minha Jornada
-            </button>
-        </div>
     </div>
 
-</section>
-<!-- Bento Access Grid -->
-
-<section class="mb-24">
-    <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-auto md:h-[400px]">
-        <div class="md:col-span-2 md:row-span-2 bg-surface-container-low rounded-xl p-10 flex flex-col justify-between group cursor-pointer hover:bg-surface-container transition-colors">
-
-            <div>
-                <span class="material-symbols-outlined text-4xl text-primary mb-6">work_history</span>
-                <h3 class="text-3xl font-bold tracking-tight mb-4">Vagas em Destaque</h3>
-                <p class="text-on-surface-variant text-lg">As posições mais competitivas nas áreas de Tecnologia, Design e Negócios.</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="card-figma p-6">
+            <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-4">
+                <span class="material-symbols-outlined text-[#0077fc]">search</span>
             </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Vagas Internas</h3>
+            <p class="text-gray-600 text-sm">Monitoria, projetos de extensão e estágios internos com filtros por cidade e curso.</p>
+        </div>
 
-            <div class="flex items-center gap-2 font-bold text-primary">
-                Ver todas as vagas <span class="material-symbols-outlined transition-transform group-hover:translate-x-2">arrow_forward</span>
+        <div class="card-figma p-6">
+            <div class="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center mb-4">
+                <span class="material-symbols-outlined text-green-600">schedule</span>
             </div>
-
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Controle de Horas</h3>
+            <p class="text-gray-600 text-sm">Registro de presença tipo ponto digital, com validação pelo supervisor de estágio interno.</p>
         </div>
 
-        <div class="md:col-span-2 bg-inverse-surface text-white rounded-xl p-8 flex items-center justify-between group cursor-pointer">
-            <div class="max-w-[60%]">
-                <h3 class="text-xl font-bold mb-2">Trilhas de Aprendizado</h3>
-                <p class="text-stone-400 text-sm">Desenvolva as soft skills mais requisitadas pelo mercado atual.</p>
+        <div class="card-figma p-6">
+            <div class="w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center mb-4">
+                <span class="material-symbols-outlined text-purple-600">menu_book</span>
             </div>
-
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Tutorial Completo</h3>
+            <p class="text-gray-600 text-sm">Trilha com 9 etapas ensinando todo o processo, do conceito até a conclusão do estágio.</p>
         </div>
 
-        <div class="md:col-span-1 bg-primary text-on-primary rounded-xl p-8 flex flex-col justify-center items-center text-center cursor-pointer hover:brightness-110 transition-all">
-            <span class="material-symbols-outlined text-3xl mb-2">rocket_launch</span>
-            <p class="font-bold">Currículo Nota 10</p>
+        <div class="card-figma p-6">
+            <div class="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center mb-4">
+                <span class="material-symbols-outlined text-orange-600">groups</span>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Empresas Conveniadas</h3>
+            <p class="text-gray-600 text-sm">Mais de 100 empresas conveniadas ao CEFET com o processo de documentação simplificado.</p>
         </div>
 
-        <div class="md:col-span-1 bg-surface-container-lowest rounded-xl p-8 flex flex-col justify-center items-center text-center border-2 border-surface-container cursor-pointer hover:border-primary/20 transition-all">
-            <span class="material-symbols-outlined text-3xl mb-2 text-tertiary">support_agent</span>
-            <p class="font-bold text-on-surface">Mentoria Individual</p>
+        <div class="card-figma p-6">
+            <div class="w-12 h-12 rounded-xl bg-pink-50 flex items-center justify-center mb-4">
+                <span class="material-symbols-outlined text-pink-600">verified_user</span>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Validação Segura</h3>
+            <p class="text-gray-600 text-sm">Cada perfil vê e valida apenas o que lhe compete: supervisor, orientador e contratante.</p>
         </div>
 
-    </div>
-
-</section>
-
-
-
-<!-- Quick Access / CTA Section -->
-<section class="bg-surface-container-low rounded-3xl p-12 md:p-20 relative overflow-hidden">
-    <div class="absolute top-0 right-0 w-1/2 h-full opacity-10">
-        <span class="material-symbols-outlined text-[400px] absolute -right-20 -top-20 text-primary">trending_up</span>
-    </div>
-    <div class="relative z-10 max-w-2xl">
-        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter mb-8 leading-tight">Pronto para dar o <br />próximo grande passo?</h2>
-        <p class="text-xl text-on-surface-variant mb-12">Nossos conselheiros de carreira estão prontos para ajudar você a refinar seu perfil e encontrar a vaga ideal.</p>
-        <div class="flex flex-col sm:flex-row gap-6">
-            <button class="bg-primary text-on-primary px-10 py-4 rounded-full font-bold editorial-shadow hover:brightness-110 transition-all">
-                Nova Candidatura
-            </button>
-            <button class="bg-surface-container-lowest text-on-surface px-10 py-4 rounded-full font-bold border-2 border-surface-container hover:border-primary transition-all">
-                Falar com Consultor
-            </button>
+        <div class="card-figma p-6">
+            <div class="w-12 h-12 rounded-xl bg-cyan-50 flex items-center justify-center mb-4">
+                <span class="material-symbols-outlined text-cyan-600">description</span>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Documentação Automática</h3>
+            <p class="text-gray-600 text-sm">Ao completar as horas, o sistema gera a ficha de avaliação e o relatório final.</p>
         </div>
     </div>
 </section>
-
+        </div>
+    </div>
+</section>
 @endsection

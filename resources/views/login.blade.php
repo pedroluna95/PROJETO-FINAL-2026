@@ -1,136 +1,102 @@
-@extends('layouts.app')
-
-@section('content')
-
-<!-- Login Form Section -->
-<section class="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 md:p-24 bg-surface">
+{{-- Login — igual ao LoginPage do Figma (página de tela cheia, gradiente azul) --}}
+<!DOCTYPE html>
+<html class="light" lang="pt-br">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Entrar — Portal Estágio CEFET</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/style.css?v=3">
+</head>
+<body style="font-family: 'Inter', sans-serif;">
+<div class="min-h-screen fig-gradient flex items-center justify-center p-4">
     <div class="w-full max-w-md">
-        <div class="mb-10 text-center lg:text-left">
-            <h2 class="font-headline text-4xl font-extrabold text-on-surface tracking-tight">Bem-vindo de volta</h2>
-            <p class="text-on-surface-variant font-medium">Acesse sua conta para gerenciar suas candidaturas e explorar novas vagas.</p>
+        {{-- Logo e Header --}}
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl mb-4">
+                <span class="material-symbols-outlined text-[40px] text-[#0077fc]">school</span>
+            </div>
+            <h1 class="text-3xl font-bold text-white mb-2">Portal Estágio CEFET</h1>
+            <p class="text-blue-100">Faça login para continuar</p>
         </div>
 
-        <form id="loginForm" class="space-y-4" method="POST" action="../public/index.php?url=auth/login" novalidate>
-
-            <!-- Email -->
-            <div class="space-y-1.5">
-                <label class="text-sm font-semibold text-on-surface-variant ml-1" for="email">E-mail corporativo ou acadêmico</label>
-                <div class="relative">
-                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">school</span>
-                    <input class="w-full pl-12 pr-4 py-3.5 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all text-on-surface placeholder:text-gray-400" id="email" name="email" placeholder="nome@exemplo.com" type="email" autocomplete="email" />
+        {{-- Card de Login --}}
+        <div class="bg-white rounded-2xl shadow-xl p-8">
+            <form id="form-login" method="POST" action="{{ url('/login') }}" class="space-y-6">
+                @csrf
+                {{-- E-mail --}}
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">E-mail</label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[20px] text-gray-400">mail</span>
+                        <input type="email" name="email" id="email"
+                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none transition-all"
+                            placeholder="seu.email@cefet.br" required/>
+                    </div>
                 </div>
-                <p id="erro-email" class="hidden text-xs text-red-500 ml-1 flex items-center gap-1"><span class="material-symbols-outlined text-sm">error</span> Informe um e-mail válido.</p>
-            </div>
 
-            <!-- Password -->
-            <div class="space-y-1.5">
-                <div class="flex justify-between items-center px-1">
-                    <label class="text-sm font-semibold text-on-surface-variant" for="password">Senha</label>
-                    <a class="text-xs font-medium text-primary hover:underline" href="#">Esqueci minha senha</a>
+                {{-- Senha --}}
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Senha</label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[20px] text-gray-400">lock</span>
+                        <input type="password" name="senha" id="senha"
+                            class="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none transition-all"
+                            placeholder="••••••••" required/>
+                        <button type="button" onclick="toggleSenha()"
+                            class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                            <span id="icone-senha" class="material-symbols-outlined text-[20px]">visibility</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="relative">
-                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">lock</span>
-                    <input class="w-full pl-12 pr-10 py-3.5 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all text-on-surface placeholder:text-gray-400" id="password" name="password" placeholder="••••••••" type="password" autocomplete="current-password" />
-                    <button type="button" class="toggle-senha absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors" data-target="password" tabindex="-1" aria-label="Mostrar senha">
-                        <span class="material-symbols-outlined text-xl">visibility</span>
-                    </button>
+
+                {{-- Esqueceu a senha --}}
+                <div class="text-right">
+                    <a href="#" class="text-sm text-[#0077fc] hover:underline">Esqueceu sua senha?</a>
                 </div>
-                <p id="erro-password" class="hidden text-xs text-red-500 ml-1 flex items-center gap-1"><span class="material-symbols-outlined text-sm">error</span> Informe sua senha.</p>
-            </div>
 
-            <!-- Submit Button -->
-            <button class="bg-primary w-full editorial-gradient text-white font-headline font-bold py-4 rounded-full shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group mt-8" type="submit">
-                Fazer Login
-                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">login</span>
-            </button>
+                {{-- Botão de Login --}}
+                <button type="submit" id="btn-entrar"
+                    class="w-full bg-[#0077fc] text-white py-3 rounded-lg font-medium hover:bg-[#0056c9] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                    Entrar
+                </button>
+            </form>
 
-            <!-- Footer Link -->
-            <p class="text-center text-on-surface-variant font-medium mt-8">
+            {{-- Link para Cadastro --}}
+            <div class="mt-6 text-center text-sm text-gray-600">
                 Não tem uma conta?
-                <a class="text-primary font-bold hover:underline ml-1" href="?url=home/cadastro">Cadastre-se</a>
-            </p>
-        </form>
-
-        <!-- Help Link -->
-        <div class="mt-12 pt-8 border-t border-surface-container-highest text-center">
-            <button class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center gap-2 mx-auto">
-                <span class="material-symbols-outlined text-lg">help</span>
-                Precisa de ajuda com o seu acesso?
-            </button>
+                <a href="/cadastro" class="text-[#0077fc] font-medium hover:underline">Cadastre-se</a>
+            </div>
         </div>
+
+        {{-- Footer --}}
+        <p class="text-center text-blue-100 text-sm mt-6">
+            © 2026 CEFET. Todos os direitos reservados.
+        </p>
     </div>
-</section>
+</div>
 
 <script>
-    // ── Utilitários ──────────────────────────────────────────────
-    function mostrar(id) {
-        document.getElementById(id)?.classList.remove('hidden');
-    }
-
-    function esconder(id) {
-        document.getElementById(id)?.classList.add('hidden');
-    }
-
-    function setErro(input, erroId) {
-        input.classList.add('ring-2', 'ring-red-400');
-        input.classList.remove('ring-primary/20');
-        mostrar(erroId);
-    }
-
-    function limparErro(input, erroId) {
-        input.classList.remove('ring-2', 'ring-red-400');
-        esconder(erroId);
-    }
-
-    // ── Toggle mostrar/ocultar senha ─────────────────────────────
-    document.querySelectorAll('.toggle-senha').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            const targetId = btn.dataset.target;
-            const input = document.getElementById(targetId);
-            const icon = btn.querySelector('.material-symbols-outlined');
-            if (input.type === 'password') {
-                input.type = 'text';
-                icon.textContent = 'visibility_off';
-            } else {
-                input.type = 'password';
-                icon.textContent = 'visibility';
-            }
-        });
-    });
-
-    // ── Validação em tempo real ───────────────────────────────────
-    const campoEmail = document.getElementById('email');
-    const campoPassword = document.getElementById('password');
-
-    campoEmail.addEventListener('blur', function() {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(campoEmail.value.trim())) setErro(campoEmail, 'erro-email');
-        else limparErro(campoEmail, 'erro-email');
-    });
-
-    campoPassword.addEventListener('input', function() {
-        if (campoPassword.value.length > 0) limparErro(campoPassword, 'erro-password');
-    });
-
-    // ── Validação no envio ────────────────────────────────────────
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-        let valido = true;
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(campoEmail.value.trim())) {
-            setErro(campoEmail, 'erro-email');
-            valido = false;
+    function toggleSenha() {
+        const input = document.getElementById('senha');
+        const icone = document.getElementById('icone-senha');
+        if (input.type === 'password') {
+            input.type = 'text';
+            icone.textContent = 'visibility_off';
+        } else {
+            input.type = 'password';
+            icone.textContent = 'visibility';
         }
+    }
 
-        if (campoPassword.value.length === 0) {
-            setErro(campoPassword, 'erro-password');
-            valido = false;
-        }
-
-        if (!valido) {
-            e.preventDefault();
-        }
+    // Estado de carregamento ao enviar
+    document.getElementById('form-login').addEventListener('submit', function () {
+        const btn = document.getElementById('btn-entrar');
+        btn.disabled = true;
+        btn.textContent = 'Entrando...';
     });
 </script>
-
-@endsection
+</body>
+</html>

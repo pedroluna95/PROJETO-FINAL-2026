@@ -1,0 +1,48 @@
+TUTORIAL DE COMO INSTALAR O PROJETO
+
+clonar o repositório:
+
+dentro de xampp/htdocs
+git clone: https://github.com/pedroluna95/PROJETO-FINAL-2026.git
+
+baixar do google:
+
+node js e composer
+depois de instalar, fechar e abrir o terminal de novo
+
+verificar e instalar dependências:
+
+composer install
+npm install
+
+criar o .env a partir do exemplo:
+
+copy .env.example .env
+trocar esse trecho no .env: DB_CONNECTION=mysql DB_HOST=127.0.0.1 DB_PORT=3306 DB_DATABASE=mydb DB_USERNAME=root DB_PASSWORD=
+
+criar o bd:
+
+ligar o apache e o mysql no xampp
+http://localhost/phpmyadmin
+novo
+utf8mb4_unicode_ci
+nome: mydb
+depois de criar, importar o código do bd em: database/sql/Codigo_DB.sql
+salvar
+
+etapa final:
+
+php artisan key:generate
+php artisan migrate
+composer run dev
+
+rodar:
+
+http://localhost:8000
+
+USO NO DIA A DIA (depois de já instalado)
+
+ligar o mysql no xampp
+git pull
+composer run dev
+http://localhost:8000
