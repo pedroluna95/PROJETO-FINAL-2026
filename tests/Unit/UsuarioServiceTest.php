@@ -1,9 +1,12 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
+namespace Tests\Unit;
+
+use Tests\TestCase;
 
 class UsuarioServiceTest extends TestCase
 {
+    
     public function test_formatCpf_valid()
     {
         $svc = \App\Services\UsuarioService::class;
