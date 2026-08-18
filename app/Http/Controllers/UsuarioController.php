@@ -51,7 +51,8 @@ class UsuarioController
             return response()->json(['message' => 'O administrador já possui login base no banco de dados.'], 422);
         }
 
-        $data = $request->validate([
+        // regras dinâmicas: matrícula obrigatória para alunos
+        $rules = [
             'nome' => 'required|string|max:60',
             'email' => 'required|email',
             'senha' => 'required|string|min:6',
@@ -59,9 +60,20 @@ class UsuarioController
             'tipo' => 'nullable|string',
             'matricula' => 'nullable|string',
             'siape' => 'nullable|digits:8',
-        ]);
+        ];
 
-        $usuario = UsuarioService::createOrUpdate($data);
+        if ($tipo === 'aluno') {
+            $rules['matricula'] = 'required|string';
+        }
+
+        $data = $request->validate($rules);
+
+        // garantir email único ao criar
+        if (Usuario::where('Email', $data['email'])->exists()) {
+            return response()->json(['message' => 'Email já cadastrado'], 422);
+        }
+
+        $usuario = UsuarioService::create($data);
         return response()->json($usuario, 201);
     }
 
@@ -117,5 +129,11 @@ class UsuarioController
         }
         $usuario->delete();
         return response()->json(['message' => 'Usuário excluído']);
+    }
+
+    public function totalUsuarios()
+    {
+        $total_usuarios = Usuario::count();
+        return response()->json(['total_usuarios' => $total_usuarios]);
     }
 }

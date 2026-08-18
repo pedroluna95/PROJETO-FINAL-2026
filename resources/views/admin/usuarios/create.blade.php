@@ -11,15 +11,19 @@
                 <input name="nome" id="nome" placeholder="Nome" class="border p-2" required />
                 <input name="email" id="email" placeholder="Email" class="border p-2" required />
                 <input name="senha" id="senha" type="password" placeholder="Senha" class="border p-2" required />
-                <input name="cpf" id="cpf" placeholder="Somente números" inputmode="numeric" pattern="[0-9]*" maxlength="11" oninput="this.value=this.value.replace(/\D/g,'')" class="border p-2" />
+                <input name="cpf" id="cpf" placeholder="CPF(Somente números)" inputmode="numeric" pattern="[0-9]*" maxlength="11" oninput="this.value=this.value.replace(/\D/g,'')" class="border p-2" />
                 <select name="tipo" id="tipo" class="border p-2">
                     <option value="aluno">Aluno</option>
                     <option value="supervisor">Supervisor</option>
                     <option value="orientador">Orientador</option>
                     <option value="contratante">Contratante</option>
                 </select>
-                <input name="matricula" id="matricula" placeholder="Matrícula (opcional)" class="border p-2" />
-                <input name="siape" id="siape" placeholder="SIAPE (8 dígitos)" inputmode="numeric" pattern="[0-9]*" maxlength="8" oninput="this.value=this.value.replace(/\D/g,'')" class="border p-2" />
+                <div id="matricula-group" class="hidden">
+                    <input name="matricula" id="matricula" placeholder="Matrícula" class="border p-2" />
+                </div>
+                <div id="siape-group" class="hidden">
+                    <input name="siape" id="siape" placeholder="SIAPE (8 dígitos)" inputmode="numeric" pattern="[0-9]*" maxlength="8" oninput="this.value=this.value.replace(/\D/g,'')" class="border p-2" />
+                </div>
                 <div class="flex items-center gap-3">
                     <button type="submit" class="bg-primary text-white px-4 py-2 rounded">Salvar</button>
                     <a href="/admin/usuarios" class="text-gray-600">Cancelar</a>

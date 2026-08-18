@@ -67,7 +67,7 @@
                         </select>
                     </div>
                 </div>
-                <!-- Telefone removido (não armazenado no BD) -->
+                
                 <!-- Password Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>

@@ -1,4 +1,4 @@
-{{-- Header do Figma — interno (logado): barra branca sticky com logo, nav e menu do usuário --}}
+<!-- Header para usuários logados -->
 @if(session('user_id'))
 <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -11,7 +11,7 @@
                 <span class="text-xl font-semibold text-gray-900">Portal Estágio CEFET</span>
             </a>
 
-            {{-- Navegação Desktop --}}
+            {{-- Navegação --}}
             <nav class="hidden md:flex items-center gap-6">
                 <a href="/dashboard" class="text-gray-700 hover:text-[#0077fc] transition-colors">Dashboard</a>
                 @if(session('user_type') === 'aluno')
@@ -38,13 +38,13 @@
                 </a>
             </div>
 
-            {{-- Botão menu mobile --}}
+            <!-- Botão Menu Mobile -->
             <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 rounded-lg hover:bg-gray-100">
                 <span class="material-symbols-outlined text-gray-700">menu</span>
             </button>
         </div>
 
-        {{-- Menu Mobile --}}
+        <!-- Menu Mobile -->
         <div id="mobile-menu" class="hidden md:hidden py-4 border-t border-gray-200">
             <nav class="flex flex-col gap-2">
                 <a href="/dashboard" class="px-4 py-2 rounded-lg hover:bg-gray-100">Dashboard</a>
@@ -61,8 +61,9 @@
     </div>
 </header>
 
+
 @else
-{{-- Header Público (visitante) — gradiente azul do Figma --}}
+<!-- Header para visitantes -->
 <header class="fig-gradient sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">

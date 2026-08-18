@@ -4,13 +4,13 @@
         <p class="text-gray-600">Gerencie todo o sistema de estágios</p>
     </div>
 
-    {{-- Stats --}}
+    {{-- status --}}
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
         <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
             <div class="inline-flex p-3 rounded-lg bg-blue-50 text-blue-600 mb-4"><span class="material-symbols-outlined">groups</span></div>
             <h3 class="text-sm text-gray-600 mb-1">Total de Usuários</h3>
-            <p class="text-2xl font-bold text-gray-900">342</p>
-            <p class="text-xs text-gray-500 mt-1">+12 este mês</p>
+            <p class="text-2xl font-bold text-gray-900">{{ $total_usuarios }}</p>
+            <p class="text-xs text-gray-500 mt-1"></p>
         </div>
         <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
             <div class="inline-flex p-3 rounded-lg bg-green-50 text-green-600 mb-4"><span class="material-symbols-outlined">business</span></div>

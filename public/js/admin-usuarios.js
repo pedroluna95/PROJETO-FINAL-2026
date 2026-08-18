@@ -13,6 +13,7 @@ function onlyDigits(value) {
     return (value || '').toString().replace(/\D/g, '');
 }
 
+
 function getUserIdentifier(u) {
     const tipo = (u.atribuicao || '').toLowerCase();
     if (tipo === 'aluno') {
@@ -20,10 +21,6 @@ function getUserIdentifier(u) {
     }
     if (tipo === 'orientador') {
         return u.siape ? `SIAPE: ${u.siape}` : 'SIAPE: —';
-    }
-    if (tipo === 'supervisor') {
-        // Supervisores não utilizam SIAPE no sistema
-        return u.matricula ? `Matrícula: ${u.matricula}` : '—';
     }
     return '—';
 }
@@ -105,6 +102,10 @@ async function handleUsuarioForm() {
         e.preventDefault();
         if (!emailValidation(email.value)) return alert('Email inválido');
 
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const origText = submitBtn ? submitBtn.textContent : null;
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Salvando...'; }
+
         const tipoSelecionado = tipo ? tipo.value : '';
         if (tipoSelecionado === 'administrador') {
             alert('O administrador já possui login base no banco de dados. Não é possível criar outro administrador no cadastro.');
@@ -112,10 +113,16 @@ async function handleUsuarioForm() {
         }
 
         const cpfDigits = cpf ? onlyDigits(cpf.value) : '';
-        if (cpf && cpfDigits.length !== 11) return alert('CPF deve conter 11 dígitos');
+        if (cpf && cpfDigits.length > 0 && cpfDigits.length !== 11) return alert('CPF deve conter 11 dígitos');
 
         const siapeDigits = siapeField ? onlyDigits(siapeField.value) : '';
         if (tipoSelecionado === 'orientador' && siapeDigits.length !== 8) return alert('SIAPE deve conter 8 dígitos');
+
+        // Validação: matrícula é obrigatória para alunos
+        if (tipoSelecionado === 'aluno') {
+            const matVal = matriculaField ? (matriculaField.value || '').trim() : '';
+            if (! matVal) return alert('Matrícula é obrigatória para usuários do tipo Aluno');
+        }
 
         const payload = {
             nome: nome.value,
@@ -130,20 +137,45 @@ async function handleUsuarioForm() {
         const url = userId ? `/admin/api/usuarios/${userId}` : '/admin/api/usuarios';
         const method = userId ? 'PUT' : 'POST';
 
-        const res = await fetch(url, {
-            method,
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': getCsrf()
-            },
-            body: JSON.stringify(payload)
-        });
+        let res;
+        try {
+            res = await fetch(url, {
+                method,
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': getCsrf()
+                },
+                body: JSON.stringify(payload)
+            });
 
-        if (res.ok) {
-            window.location.href = '/admin/usuarios';
-        } else {
-            const err = await res.json().catch(()=>({}));
-            alert(err.message || 'Erro ao salvar');
+            if (res.ok) {
+                window.location.href = '/admin/usuarios';
+                return;
+            }
+
+            // tratar erros de validação (422) e mensagens JSON
+            const err = await res.json().catch(()=>null);
+            if (res.status === 422 && err) {
+                // Laravel pode retornar errors array
+                if (err.errors) {
+                    const first = Object.values(err.errors)[0];
+                    alert(Array.isArray(first) ? first[0] : first);
+                } else if (err.message) {
+                    alert(err.message);
+                } else {
+                    alert('Erro de validação ao salvar usuário');
+                }
+            } else if (err && err.message) {
+                alert(err.message);
+            } else {
+                alert('Erro ao salvar (verifique o console e os logs)');
+            }
+        } catch (ex) {
+            console.error('Erro na requisição:', ex);
+            alert('Erro de rede ao salvar usuário');
+        } finally {
+            if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = origText; }
         }
     });
 
@@ -159,6 +191,37 @@ async function handleUsuarioForm() {
             if (matriculaField) matriculaField.value = u.matricula || '';
             if (siapeField) siapeField.value = onlyDigits(u.siape || '');
         }
+    }
+
+    // Mostrar/ocultar campos conforme tipo selecionado
+    function updateFieldVisibility(selected) {
+        const tipoLower = (selected || '').toLowerCase();
+        const matGroup = document.getElementById('matricula-group');
+        const siapeGroup = document.getElementById('siape-group');
+        if (matGroup) matGroup.classList.add('hidden');
+        if (siapeGroup) siapeGroup.classList.add('hidden');
+        // remover required por padrão
+        if (matGroup) { const mf = matGroup.querySelector('input'); if (mf) mf.required = false; }
+        if (siapeGroup) { const sf = siapeGroup.querySelector('input'); if (sf) sf.required = false; }
+        if (tipoLower === 'aluno') {
+            if (matGroup) {
+                matGroup.classList.remove('hidden');
+                const mf = matGroup.querySelector('input'); if (mf) mf.required = true;
+            }
+        } else if (tipoLower === 'orientador') {
+            if (siapeGroup) {
+                siapeGroup.classList.remove('hidden');
+                const sf = siapeGroup.querySelector('input'); if (sf) sf.required = true;
+            }
+        } else {
+            // nenhum dos dois -> ambos ocultos
+        }
+    }
+
+    if (tipo) {
+        // inicializar visibilidade com valor atual
+        updateFieldVisibility(tipo.value);
+        tipo.addEventListener('change', (e) => updateFieldVisibility(e.target.value));
     }
 }
 

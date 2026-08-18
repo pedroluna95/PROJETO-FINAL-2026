@@ -79,6 +79,50 @@ class UsuarioService
     }
 
     /**
+     * Cria um novo usuário sem tentar atualizar por email.
+     */
+    public static function create(array $data): Usuario
+    {
+        $senha = $data['senha'] ?? $data['Senha'] ?? null;
+        if ($senha) {
+            $senha = Hash::make($senha);
+        }
+
+        $attributes = [
+            'Nome' => $data['nome'] ?? $data['Nome'] ?? null,
+            'Email' => $data['email'] ?? $data['Email'] ?? null,
+            'Senha' => $senha,
+            'cpf' => isset($data['cpf']) ? self::formatCpf($data['cpf']) : null,
+            'atribuicao' => $data['tipo'] ?? $data['atribuicao'] ?? null,
+            'matricula' => $data['matricula'] ?? null,
+            'siape' => $data['siape'] ?? null,
+        ];
+
+        $tipo = strtolower((string) ($data['tipo'] ?? $data['atribuicao'] ?? $attributes['atribuicao'] ?? ''));
+        switch ($tipo) {
+            case 'aluno':
+                $modelClass = \App\Models\Aluno::class;
+                break;
+            case 'orientador':
+                $modelClass = \App\Models\Orientador::class;
+                break;
+            case 'supervisor':
+                $modelClass = \App\Models\Supervisor::class;
+                break;
+            case 'contratante':
+                $modelClass = \App\Models\Contratante::class;
+                break;
+            case 'administrador':
+                $modelClass = \App\Models\Administrador::class;
+                break;
+            default:
+                $modelClass = Usuario::class;
+        }
+
+        return $modelClass::create($attributes);
+    }
+
+    /*
      * Formata um CPF para o padrão 000.000.000-00.
      * Aceita entrada com ou sem pontuação. Retorna null se inválido/empty.
      */

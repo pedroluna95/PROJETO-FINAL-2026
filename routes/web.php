@@ -6,7 +6,7 @@ use App\Models\Usuario;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\UsuarioController;
 
-// Rota raiz redireciona para home
+// Rota raiz para HOME
 Route::redirect('/', '/home');
 
 Route::view ('/home','home');
@@ -18,25 +18,28 @@ Route::post('/login', function (Request $request) {
 		'senha' => 'required|string',
 	]);
 
-	
 	$user = Usuario::where('Email', $data['email'])->first();
-	if (! $user || ! Hash::check($data['senha'], $user->Senha)) {
+
+	// hash check para comparar a senha fornecida com a senha armazenada
+	if (! $user || ! Hash::check($data['senha'], $user->Senha)) { 
 		return back()->withErrors(['email' => 'Credenciais inválidas'])->withInput();
 	}
 
 	$request->session()->put('usuario_id', $user->user_ID);
 	$request->session()->put('usuario_nome', $user->Nome);
+
 	// padronizar chave de tipo usada nas views
 	$request->session()->put('user_type', $user->atribuicao ?? 'aluno');
 
 	// chaves compatíveis com views existentes
-	$request->session()->put('user_id', $user->user_ID);
+	$request->session()->put('user_id', $user->user_ID); 
 	$request->session()->put('user_name', $user->Nome);
 	$request->session()->put('user_email', $user->Email);
 	$request->session()->put('user_cpf', $user->cpf ?? 'CPF não cadastrado');
 	$request->session()->put('user_matricula', $user->matricula ?? '');
 	$request->session()->put('user_siape', $user->siape ?? '');
 
+	// redirecionar para dashboard após login
 	return redirect('/dashboard');
 });
 
@@ -46,6 +49,7 @@ Route::view ('/cadastro','cadastro');
 Route::post('/cadastro', function (Request $request) {
 	$tipo = $request->input('tipo');
 
+	//restrições de validação para matrícula e siape dependendo do tipo de usuário
 	$data = $request->validate([
 		'nome' => 'required|string|max:60',
 		'email' => 'required|email',
@@ -61,22 +65,41 @@ Route::post('/cadastro', function (Request $request) {
 		return back()->withErrors(['senha' => 'As senhas não coincidem'])->withInput();
 	}
 
-	UsuarioService::createOrUpdate($request->all());
+	$data = $request->only(['nome','email','cpf','senha','tipo','matricula','siape']);
 
-	return redirect('/login')->with('success', 'Conta criada/atualizada com sucesso');
+	// assegurar email único
+	if (\App\Models\Usuario::where('Email', $data['email'])->exists()) {
+		return back()->withErrors(['email' => 'Email já cadastrado'])->withInput();
+	}
+
+	UsuarioService::create($data);
+
+	return redirect('/login')->with('success', 'Conta criada com sucesso');
 });
 
+
+// Cada rota de cadastro específica para cada tipo de usuário, que no bd será armazenado automaticamente no campo "atribuicao" da tabela usuarios
 Route::view('/cadastro/aluno', 'cadastro');
 Route::view('/cadastro/supervisor', 'cadastro');
 Route::view('/cadastro/orientador', 'cadastro');
 Route::view('/cadastro/contratante', 'cadastro');
 
 
+//dashboard para o aluno
+Route::view('/aluno', 'dashboard');
+Route::view('/controle-horas', 'controle-horas');
+Route::view('/tutorial', 'tutorial');
+Route::view('/perfil', 'perfil');
+Route::view('/empresas', 'empresas');
+
+
+//views de vagas e inscrições
 Route::view ('/vagas','vagas');
 Route::view ('/vagas/{id}', 'vaga-detalhe');
 Route::view ('/inscricoes','vagas');
 
-// Área interna (design do Figma — dashboards por perfil)
+
+// Rotas de dashboard e perfil
 Route::get('/dashboard', function (Request $request) {
 	$usuarioId = $request->session()->get('usuario_id');
 	if ($usuarioId) {
@@ -102,13 +125,12 @@ Route::get('/dashboard', function (Request $request) {
 			}
 		}
 	}
-	return view('dashboard');
+	// fornecer estatísticas simples para as views (ex.: total de usuários no dashboard admin)
+	$total_usuarios = \App\Models\Usuario::count();
+	return view('dashboard', ['total_usuarios' => $total_usuarios]);
 });
-Route::view('/aluno', 'dashboard');
-Route::view('/controle-horas', 'controle-horas');
-Route::view('/tutorial', 'tutorial');
-Route::view('/perfil', 'perfil');
-Route::view('/empresas', 'empresas');
+
+
 // Rotas administrativas protegidas — apenas administradores
 Route::prefix('admin')->middleware(\App\Http\Middleware\AdminMiddleware::class)->group(function () {
 	// Views de gerenciamento
@@ -129,6 +151,8 @@ Route::prefix('admin')->middleware(\App\Http\Middleware\AdminMiddleware::class)-
 	Route::delete('api/usuarios/{id}', [UsuarioController::class, 'destroy']);
 });
 
+
+// Rota de logout
 Route::get('/logout', function (Request $request) {
 	$request->session()->flush();
 	return redirect('/login');
