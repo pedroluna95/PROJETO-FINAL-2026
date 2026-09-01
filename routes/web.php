@@ -72,7 +72,13 @@ Route::post('/cadastro', function (Request $request) {
 		return back()->withErrors(['email' => 'Email já cadastrado'])->withInput();
 	}
 
-	UsuarioService::create($data);
+	try {
+		$usuario = UsuarioService::create($data);
+		\Log::info('Usuário criado com sucesso', ['user_id' => $usuario->user_ID, 'email' => $usuario->Email]);
+	} catch (\Exception $e) {
+		\Log::error('Erro ao criar usuário: ' . $e->getMessage(), ['trace' => $e->getTraceAsString()]);
+		return back()->withErrors(['error' => 'Erro ao criar a conta: ' . $e->getMessage()])->withInput();
+	}
 
 	return redirect('/login')->with('success', 'Conta criada com sucesso');
 });

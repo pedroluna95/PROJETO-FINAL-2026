@@ -25,7 +25,7 @@
         <div class="bg-white rounded-2xl shadow-xl p-8">
             {{-- Passo 1: Seleção de tipo --}}
             <div id="passo-tipo" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <button type="button" onclick="selecionarTipo('aluno')" class="p-6 border-2 border-gray-200 rounded-xl hover:border-[#0077fc] hover:bg-blue-50 transition-all text-left group">
+                <a href="?tipo=aluno" onclick="selecionarTipo('aluno'); return false;" class="p-6 border-2 border-gray-200 rounded-xl hover:border-[#0077fc] hover:bg-blue-50 transition-all text-left group block">
                     <div class="flex items-start gap-4">
                         <div class="p-3 bg-blue-50 group-hover:bg-[#0077fc] rounded-lg transition-colors">
                             <span class="material-symbols-outlined text-[#0077fc] group-hover:text-white">person</span>
@@ -35,9 +35,9 @@
                             <p class="text-sm text-gray-600">Estudante em busca de estágio</p>
                         </div>
                     </div>
-                </button>
+                </a>
 
-                <button type="button" onclick="selecionarTipo('supervisor')" class="p-6 border-2 border-gray-200 rounded-xl hover:border-[#0077fc] hover:bg-blue-50 transition-all text-left group">
+                <a href="?tipo=supervisor" onclick="selecionarTipo('supervisor'); return false;" class="p-6 border-2 border-gray-200 rounded-xl hover:border-[#0077fc] hover:bg-blue-50 transition-all text-left group block">
                     <div class="flex items-start gap-4">
                         <div class="p-3 bg-blue-50 group-hover:bg-[#0077fc] rounded-lg transition-colors">
                             <span class="material-symbols-outlined text-[#0077fc] group-hover:text-white">manage_accounts</span>
@@ -47,9 +47,9 @@
                             <p class="text-sm text-gray-600">Supervisor de estágio na empresa</p>
                         </div>
                     </div>
-                </button>
+                </a>
 
-                <button type="button" onclick="selecionarTipo('orientador')" class="p-6 border-2 border-gray-200 rounded-xl hover:border-[#0077fc] hover:bg-blue-50 transition-all text-left group">
+                <a href="?tipo=orientador" onclick="selecionarTipo('orientador'); return false;" class="p-6 border-2 border-gray-200 rounded-xl hover:border-[#0077fc] hover:bg-blue-50 transition-all text-left group block">
                     <div class="flex items-start gap-4">
                         <div class="p-3 bg-blue-50 group-hover:bg-[#0077fc] rounded-lg transition-colors">
                             <span class="material-symbols-outlined text-[#0077fc] group-hover:text-white">school</span>
@@ -59,9 +59,9 @@
                             <p class="text-sm text-gray-600">Professor orientador do CEFET</p>
                         </div>
                     </div>
-                </button>
+                </a>
 
-                <button type="button" onclick="selecionarTipo('contratante')" class="p-6 border-2 border-gray-200 rounded-xl hover:border-[#0077fc] hover:bg-blue-50 transition-all text-left group">
+                <a href="?tipo=contratante" onclick="selecionarTipo('contratante'); return false;" class="p-6 border-2 border-gray-200 rounded-xl hover:border-[#0077fc] hover:bg-blue-50 transition-all text-left group block">
                     <div class="flex items-start gap-4">
                         <div class="p-3 bg-blue-50 group-hover:bg-[#0077fc] rounded-lg transition-colors">
                             <span class="material-symbols-outlined text-[#0077fc] group-hover:text-white">business</span>
@@ -71,13 +71,25 @@
                             <p class="text-sm text-gray-600">Empresa parceira</p>
                         </div>
                     </div>
-                </button>
+                </a>
 
             </div>
 
             {{-- Passo 2: Formulário dinâmico --}}
             <form id="passo-form" class="hidden space-y-4" method="POST" action="{{ url('/cadastro') }}">
                 @csrf
+                @if($errors->any())
+                <div class="mb-4 text-red-600">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+                @if(session('success'))
+                <div class="mb-4 text-green-600">{{ session('success') }}</div>
+                @endif
                 <button type="button" onclick="voltarTipo()" class="flex items-center gap-2 text-[#0077fc] hover:underline mb-4">
                     <span class="material-symbols-outlined text-[18px]">arrow_back</span>
                     Voltar
@@ -156,6 +168,19 @@
         document.getElementById('passo-form').classList.add('hidden');
         document.getElementById('subtitulo').textContent = 'Selecione o tipo de usuário';
     }
+
+    // Auto-abre o formulário se ?tipo= estiver presente na URL (fallback caso o usuário venha por link)
+    document.addEventListener('DOMContentLoaded', function () {
+        try {
+            const params = new URLSearchParams(window.location.search);
+            const tipoParam = params.get('tipo');
+            if (tipoParam) {
+                selecionarTipo(tipoParam);
+            }
+        } catch (e) {
+            // silent
+        }
+    });
 
     // Validação de senhas e campos obrigatórios por tipo
     document.getElementById('passo-form').addEventListener('submit', function (e) {
