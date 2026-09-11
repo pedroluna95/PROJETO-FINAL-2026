@@ -7,34 +7,20 @@ use Illuminate\Support\Facades\DB;
 
 class TablesController
 {
+    private const TABLES = [
+        'usuarios' => ['user_ID', 'Nome', 'Email', 'atribuicao', 'cpf', 'matricula', 'siape'],
+        'vagas' => ['id', 'titulo', 'descricao'],
+    ];
+
     public function listTables()
     {
-        // SHOW TABLES retorna stdClass com chave dependente do DB, então extraímos os valores
-        $results = DB::select('SHOW TABLES');
-        $tables = [];
-        if (count($results) > 0) {
-            $first = (array) $results[0];
-            $key = array_key_first($first);
-            foreach ($results as $r) {
-                $row = (array) $r;
-                $tables[] = $row[$key];
-            }
-        }
-
-        return response()->json($tables);
+        return response()->json(array_keys(self::TABLES));
     }
 
-    public function rows(Request $request, $table)
+    public function rows(Request $request, string $table)
     {
-        $limit = (int) $request->query('limit', 100);
-        if ($limit <= 0 || $limit > 1000) $limit = 100;
-
-        try {
-            $rows = DB::table($table)->limit($limit)->get();
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Tabela inválida ou erro ao consultar'], 400);
-        }
-
-        return response()->json($rows);
+        if (! array_key_exists($table, self::TABLES)) return response()->json(['message' => 'Tabela não autorizada.'], 404);
+        $limit = min(max((int) $request->query('limit', 100), 1), 1000);
+        return response()->json(DB::table($table)->select(self::TABLES[$table])->limit($limit)->get());
     }
 }

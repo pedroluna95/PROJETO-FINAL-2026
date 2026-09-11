@@ -3,6 +3,15 @@ function getCsrf() {
     return m ? m.content : '';
 }
 
+function showFormError(message, field = null) {
+    const form = document.getElementById('usuario-form');
+    if (!form) return;
+    let box = form.querySelector('[data-form-error]');
+    if (!box) { box = document.createElement('div'); box.dataset.formError = '1'; box.className = 'mb-4 rounded bg-red-50 p-3 text-sm text-red-700'; form.prepend(box); }
+    box.textContent = message;
+    if (field) document.getElementById(field)?.focus();
+}
+
 const emailValidation = (email) => {
     const regex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
     return regex.test(email);

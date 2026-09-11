@@ -33,8 +33,14 @@
                         <div class="text-xs text-gray-500 capitalize">{{ session('user_type', 'aluno') }}</div>
                     </div>
                 </a>
-                <a href="/logout" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" title="Sair">
-                    <span class="material-symbols-outlined text-gray-600 text-[22px]">logout</span>
+                <form method="POST" action="{{ url('/logout') }}" class="inline">
+                    @csrf
+                    <button type="submit" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" title="Sair" aria-label="Sair">
+                        <span class="material-symbols-outlined text-gray-600 text-[22px]">
+                            logout
+                        </span>
+                    </button>
+                </form>
                 </a>
             </div>
 

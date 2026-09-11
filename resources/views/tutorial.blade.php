@@ -27,7 +27,7 @@
             </div>
             <div>
                 <h3 class="text-lg font-semibold text-gray-900 mb-1">1. Conceito de Estágio</h3>
-                <p class="text-sm text-gray-600">O estágio é um ato educativo escolar supervisionado que prepara o estudante para o trabalho produtivo. É regulamentado pela Lei nº 11.788/2008 e faz parte do projeto pedagógico do curso.</p>
+                <p class="text-sm text-gray-600">O estágio é um ato educativo escolar supervisionado que prepara o estudante para o ambiente de trabalho produtivo pondo em prática os conhecimentos adquiridos durante o curso. É regulamentado pela Lei nº 11.788/2008 e faz parte do projeto pedagógico do curso.</p>
             </div>
         </div>
 
@@ -37,7 +37,7 @@
             </div>
             <div>
                 <h3 class="text-lg font-semibold text-gray-900 mb-1">2. Tipos de Estágio</h3>
-                <p class="text-sm text-gray-600">O estágio pode ser <strong>obrigatório</strong> (exigido pela grade curricular) ou <strong>não obrigatório</strong> (opcional, complementa a formação). Também existem as modalidades interna (CEFET) e externa (empresas conveniadas).</p>
+                <p class="text-sm text-gray-600">O estágio pode ser <strong>obrigatório</strong> (exigido pela grade curricular) ou <strong>não obrigatório</strong> (opcional, complementa a formação). Podendo ser interno (na sua unidade do CEFET através de professores e projetos fornecendo estágio). Ou externo (em empresas conveniadas).</p>
             </div>
         </div>
 
@@ -47,7 +47,7 @@
             </div>
             <div>
                 <h3 class="text-lg font-semibold text-gray-900 mb-1">3. Horas Obrigatórias</h3>
-                <p class="text-sm text-gray-600">Cada curso exige um número mínimo de horas: geralmente <strong>240 horas</strong> para estágio obrigatório. As horas podem ser cumpridas em monitoria, projetos de extensão ou estágios em empresas conveniadas.</p>
+                <p class="text-sm text-gray-600">Cada curso exige um número total de horas: geralmente <strong>400</strong> para estágio obrigatório. Desse total de horas, há uma parcela de <strong>160 horas </strong> que <strong>podem</strong> ser cumpridas sendo monitor de alguma matéria do técnico ou participando de projetos de extensão. Assim estabelecendo que se voce seja monitor ou participe de algum projeto, <strong>o mínimo de horas a serem cumpridas de estágio interno ou externo é de 240 horas</strong>.</p>
             </div>
         </div>
 

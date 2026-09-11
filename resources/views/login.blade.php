@@ -24,6 +24,14 @@
 
         {{-- Card de Login --}}
         <div class="bg-white rounded-2xl shadow-xl p-8">
+            @if($errors->any())
+                <div role="alert" class="mb-5 rounded-lg bg-red-50 p-3 text-sm text-red-700">
+                    <ul class="list-disc pl-5">@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>
+                </div>
+            @endif
+            @if(session('success'))
+                <div role="status" class="mb-5 rounded-lg bg-green-50 p-3 text-sm text-green-700">{{ session('success') }}</div>
+            @endif
             <form id="form-login" method="POST" action="{{ url('/login') }}" class="space-y-6">
                 @csrf
                 {{-- E-mail --}}
@@ -33,7 +41,7 @@
                         <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[20px] text-gray-400">mail</span>
                         <input type="email" name="email" id="email"
                             class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none transition-all"
-                            placeholder="seu.email@cefet.br" required/>
+                            placeholder="seu.email@cefet.br" value="{{ old('email') }}" autocomplete="email" required/>
                     </div>
                 </div>
 

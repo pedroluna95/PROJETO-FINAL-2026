@@ -8,9 +8,6 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminUserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         Usuario::updateOrCreate(
@@ -19,7 +16,7 @@ class AdminUserSeeder extends Seeder
                 'Nome' => 'Administrador',
                 'Senha' => Hash::make('cefet123'),
                 'atribuicao' => 'administrador',
-                'cpf' => '000.000.000-00',
+                'cpf' => null,
                 'matricula' => null,
                 'siape' => null,
             ]

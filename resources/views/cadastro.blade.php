@@ -24,7 +24,7 @@
 
         <div class="bg-white rounded-2xl shadow-xl p-8">
             {{-- Passo 1: Seleção de tipo --}}
-            <div id="passo-tipo" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div id="passo-tipo" class="grid grid-cols-1 md:grid-cols-2 gap-4 {{ $errors->any() || !empty($tipoInicial) ? 'hidden' : '' }}">
                 <a href="?tipo=aluno" onclick="selecionarTipo('aluno'); return false;" class="p-6 border-2 border-gray-200 rounded-xl hover:border-[#0077fc] hover:bg-blue-50 transition-all text-left group block">
                     <div class="flex items-start gap-4">
                         <div class="p-3 bg-blue-50 group-hover:bg-[#0077fc] rounded-lg transition-colors">
@@ -76,7 +76,7 @@
             </div>
 
             {{-- Passo 2: Formulário dinâmico --}}
-            <form id="passo-form" class="hidden space-y-4" method="POST" action="{{ url('/cadastro') }}">
+            <form id="passo-form" class="{{ $errors->any() || !empty($tipoInicial) ? '' : 'hidden' }} space-y-4" method="POST" action="{{ url('/cadastro') }}">
                 @csrf
                 @if($errors->any())
                 <div class="mb-4 text-red-600">
@@ -95,21 +95,21 @@
                     Voltar
                 </button>
 
-                <input type="hidden" name="tipo" id="tipo" value=""/>
+                <input type="hidden" name="tipo" id="tipo" value="{{ old('tipo', $tipoInicial ?? '') }}"/>
 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Nome Completo</label>
-                    <input type="text" name="nome" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none" required/>
+                    <input type="text" name="nome" value="{{ old('nome') }}" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none" required/>
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">E-mail</label>
-                    <input type="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none" required/>
+                    <input type="email" name="email" value="{{ old('email') }}" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none" required/>
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">CPF (somente números)</label>
-                    <input type="text" name="cpf" placeholder="Somente números" inputmode="numeric" pattern="[0-9]*" maxlength="11" oninput="this.value=this.value.replace(/\D/g,'')" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none" required/>
+                    <input type="text" name="cpf" value="{{ old('cpf') }}" placeholder="Somente números" inputmode="numeric" pattern="[0-9]*" maxlength="11" oninput="this.value=this.value.replace(/\D/g,'')" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0077fc] focus:border-transparent outline-none" required/>
                 </div>
 
                 <div id="campos-especificos"></div>
@@ -173,7 +173,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         try {
             const params = new URLSearchParams(window.location.search);
-            const tipoParam = params.get('tipo');
+            const tipoParam = document.getElementById('tipo').value || params.get('tipo');
             if (tipoParam) {
                 selecionarTipo(tipoParam);
             }
